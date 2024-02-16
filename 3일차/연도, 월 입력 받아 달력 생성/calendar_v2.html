@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table{
+                margin:auto;
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+            
+            td{
+                border:1px solid black;
+                padding:5px;
+            }
+
+            td:first-child{
+                color:red;
+            }
+
+            td:last-child{
+                color:blue;
+            }
+        </style>
+    </head>
+<body>
+    <div id="cal">Calendar</div>
+
+    <input type="button" value="1월" onclick="viewMonth_v3(1)"/>
+    <input type="button" value="5월" onclick="viewMonth_v3(5)"/>
+    <input type="button" value="9월" onclick="viewMonth_v3(9)"/>
+
+    <select onchange="viewMonth_v2(this.value)">
+        <option>--월 선택--</option>
+        <option value="1">1월</option>
+        <option value="5">5월</option>
+        <option value="9">9월</option>
+    </select>
+
+    <div>
+        <input type="text" id="year" />년<input type="text" id="month" />월
+        <input type="button" value="view calendar" onclick="viewMonth_v4()">
+    </div>
+
+    <div class="table_wrap">
+        <table>
+            <thead>
+                <tr>
+                    <td>일</td>
+                    <td>월</td>
+                    <td>화</td>
+                    <td>수</td>
+                    <td>목</td>
+                    <td>금</td>
+                    <td>토</td>        
+                </tr>
+            </thead>
+
+            <tbody id="createTable">
+            </tbody>
+        </table>
+    </div>
+        
+</body>
+</html>
+<script src="calendar.js"></script>
