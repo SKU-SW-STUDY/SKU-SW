@@ -157,12 +157,19 @@
             for(let k=1; k<=7; k++){                /* 열을 반복할횟수 */
                 td = document.createElement("td");
 
-                txtNode = document.createTextNode(daynum);
-                td.appendChild(txtNode);
-                tr.appendChild(td);
-                daynum++;
+                if(daynum > lastDay) //break;      /* 일수를 표현할 변수가 지정된 변수값 보다 커지면 반복 종료 */
+                {
 
-                if(daynum > lastDay) break;      /* 일수를 표현할 변수가 지정된 변수값 보다 커지면 반복 종료 */
+                    txtNode = document.createTextNode("");
+                    td.appendChild(txtNode);
+                    tr.appendChild(td);
+
+                }else{
+                    txtNode = document.createTextNode(daynum);
+                    td.appendChild(txtNode);
+                    tr.appendChild(td);
+                    daynum++;
+                }
             }
 
             table.appendChild(tr);
