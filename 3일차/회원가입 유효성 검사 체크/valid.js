@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    console.log("READY !!");
 
-     $("#idBtn").on("click", function(e){
+     $("#idBtn").on("click", function(e){ 
+         console.log("버튼클릭");
          e.preventDefault();    // 기본흐름을 막기위한 함수 
      });
 });
@@ -15,7 +15,7 @@ function idChk(){   /* 아이디 체크하는 함수 */
         return false;
     }
 
-    if(id.length != 8 || !isLower(id.charCodeAt(0))){
+    if(id.length != 8 || !isLower(id.charCodeAt(0))){   /* 문자열이 소문자인지 확인하는 함수로 valid */
         alert("아이디는 8자리, 첫 번째 글자는 영문 소문자 입니다.");
         document.getElementById("id").value = "";
         return false;
@@ -70,8 +70,6 @@ function categoryBtn(){ /* 카테고리 체크하는 함수 */
             num ++;
         }
     });
-
-    console.log(num);
 
     if(num < 2){
         alert("관심분야를 2~3개 선택해 주세요");
