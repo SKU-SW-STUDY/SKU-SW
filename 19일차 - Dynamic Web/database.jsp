@@ -21,7 +21,7 @@ td{
 <body>
 <%
 	String id = "root";
-	String pw = "a2272062@";		
+	String pw = "XXXXXXX";		
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String jdbcURL = "jdbc:mysql://localhost:3306/gisa"; 
 	Connection con = null;
@@ -39,17 +39,17 @@ td{
 		
 		out.println("<table>");
 		out.println("<tr>");
-		out.println("<td>ÇĞ¹ø</td>");
-		out.println("<td>ÀÌ¸ŞÀÏ</td>");
-		out.println("<td>±¹¾îÁ¡¼ö</td>");
-		out.println("<td>¿µ¾îÁ¡¼ö</td>");
-		out.println("<td>¼öÇĞÁ¡¼ö</td>");
-		out.println("<td>°úÇĞÁ¡¼ö</td>");
-		out.println("<td>±¹»çÁ¡¼ö</td>");
-		out.println("<td>ÃÑÁ¡</td>");
-		out.println("<td>´ãÀÓÄÚµå</td>");
-		out.println("<td>¼ºÃëµµ</td>");
-		out.println("<td>Áö¿ªÄÚµå</td>");
+		out.println("<td>í•™ë²ˆ</td>");
+		out.println("<td>ì´ë©”ì¼</td>");
+		out.println("<td>êµ­ì–´ì ìˆ˜</td>");
+		out.println("<td>ì˜ì–´ì ìˆ˜</td>");
+		out.println("<td>ìˆ˜í•™ì ìˆ˜</td>");
+		out.println("<td>ê³¼í•™ì ìˆ˜</td>");
+		out.println("<td>êµ­ì‚¬ì ìˆ˜</td>");
+		out.println("<td>ì´ì </td>");
+		out.println("<td>ë‹´ì„ì½”ë“œ</td>");
+		out.println("<td>ì„±ì·¨ë„</td>");
+		out.println("<td>ì§€ì—­ì½”ë“œ</td>");
 		out.println("</tr>");
 		
 		while(rs.next()) {
