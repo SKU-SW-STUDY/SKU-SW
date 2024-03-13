@@ -21,7 +21,7 @@ td{
 <body>
 <%
 	String id = "root";
-	String pw = "a2272062@";		
+	String pw = "XXXXXXXX";		
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String jdbcURL = "jdbc:mysql://localhost:3306/gisa"; 
 	Connection con = null;
@@ -39,13 +39,13 @@ td{
 		String sql = "select * from "+table+" limit 10";
 		rs = stmt.executeQuery(sql);
 		
-		ResultSetMetaData metaData = rs.getMetaData();	// Å×ÀÌºíÀÇ ¸ÞÅ¸ µ¥ÀÌÅÍ Á¤º¸ °¡Á®¿À±â 
-		int columnCount = metaData.getColumnCount();	// Å×ÀÌºíÀÇ µ¥ÀÌÅÍ ÄÃ·³¼ö °¡Á®¿À±â 
+		ResultSetMetaData metaData = rs.getMetaData();	// í…Œì´ë¸”ì˜ ë©”íƒ€ ë°ì´í„° ì •ë³´ ê°€ì ¸ì˜¤ê¸° 
+		int columnCount = metaData.getColumnCount();	// í…Œì´ë¸”ì˜ ë°ì´í„° ì»¬ëŸ¼ìˆ˜ ê°€ì ¸ì˜¤ê¸° 
 		
 		out.print("<table>");
 		out.print("<tr>");
 		
-		for(int i=1; i<=columnCount; i++){	/* Å×ÀÌºí Çì´õ¸¦ ±¸¼º */
+		for(int i=1; i<=columnCount; i++){	/* í…Œì´ë¸” í—¤ë”ë¥¼ êµ¬ì„± */
 			String columnName = metaData.getColumnName(i);
 			out.print("<td>"+columnName+"</td>");
 		}
