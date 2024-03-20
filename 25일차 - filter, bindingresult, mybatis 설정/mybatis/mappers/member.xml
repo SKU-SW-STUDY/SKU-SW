@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">
+	<resultMap id="memberMap" type="memberDTO">
+		<id property="userId" column="userId"></id>
+		<result property="userPwd" column="userPwd"></result>
+		<result property="userName" column="userName"></result>
+		<result property="registDate" column="registDate"></result>
+	</resultMap>
+	
+	<select id="selectAll" resultMap="memberMap" resultType="memberDTO">
+		<![CDATA[
+			select * from member
+		]]>
+	</select>
+	<select id="select" resultType="memberDTO" parameterType="java.lang.String">
+		<![CDATA[
+			select * from member where userId = #{id}
+		]]>
+	</select>
+	<select id="selectById" resultType="java.lang.Integer" parameterType="java.lang.String">
+		<![CDATA[
+			selct count(*) from member where userId = #{id}
+		]]>
+	</select>
+	<select id="delete" parameterType="java.lang.String">
+		<![CDATA[
+			delete from member where userId = #{id}
+		]]>
+	</select>
+	<select id="update" parameterType="memberDTO">
+		<![CDATA[
+			update member set userPwd = #{userPwd}, userName=#{username} where userId = #{userId}
+		]]>
+	</select>
+	<select id="insert" parameterType="memberDTO">
+		<![CDATA[
+			insert into member values (#{usrId},#{userPwd},#{userName},#{registDate})
+		]]>
+	</select>
+</mapper>
