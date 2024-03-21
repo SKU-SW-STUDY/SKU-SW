@@ -22,22 +22,22 @@
 	</select>
 	<select id="selectById" resultType="java.lang.Integer" parameterType="java.lang.String">
 		<![CDATA[
-			selct count(*) from member where userId = #{id}
+			select count(*) from member where userId = #{id}
 		]]>
 	</select>
-	<select id="delete" parameterType="java.lang.String">
+	<delete id="delete" parameterType="java.lang.String">
 		<![CDATA[
 			delete from member where userId = #{id}
 		]]>
-	</select>
-	<select id="update" parameterType="memberDTO">
+	</delete>
+	<update id="update" parameterType="memberDTO">
 		<![CDATA[
-			update member set userPwd = #{userPwd}, userName=#{username} where userId = #{userId}
+			update member set userPwd = #{userPwd}, userName=#{userName} where userId = #{userId}
 		]]>
-	</select>
-	<select id="insert" parameterType="memberDTO">
+	</update>
+	<insert id="insert" parameterType="memberDTO">
 		<![CDATA[
-			insert into member values (#{usrId},#{userPwd},#{userName},#{registDate})
+			insert into member values (#{userId},#{userPwd},#{userName},#{registDate})
 		]]>
-	</select>
+	</insert>
 </mapper>
