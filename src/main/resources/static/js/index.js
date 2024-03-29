@@ -47,12 +47,14 @@ function writeAdd(){
             return response.json();
         })
         .then(data => {
-            console.log(data);
+
+            if(data.code == 200){
+                alert("게시글 작성에 성공하였습니다.");
+                location.href='/';
+            }
+
         })
         .catch(error => {
             console.error('통신 중 오류가 발생했습니다:', error);
         });
-
-
-
 }

@@ -21,13 +21,29 @@
                 <th class="shortCell">조회수</th>
             </tr>
         </thead>
-        <tbody>
+        <!--<tbody>
             <tr>
                 <td>1</td>
                 <td><a href="/index/1">글쓰기 테스트</a></td>
                 <td>임태양</td>
                 <td>2023-03-29</td>
                 <td>0</td>
+            </tr>
+        </tbody>-->
+
+        <tbody th:if="${!#lists.isEmpty(list)}">
+            <tr th:each="item : ${list}">
+                <td th:text="${item.seq}"></td>
+                <td><a th:href="@{'/index/' + ${item.seq}}" th:text="${item.title}"></a></td>
+                <td th:text="${item.writer}"></td>
+                <td th:text="${item.createDate}"></td>
+                <td th:text="${item.viewCount}"></td>
+            </tr>
+        </tbody>
+
+        <tbody th:if="${#lists.isEmpty(list)}">
+            <tr>
+                <td colspan="5">게시글이 없습니다.</td>
             </tr>
         </tbody>
     </table>

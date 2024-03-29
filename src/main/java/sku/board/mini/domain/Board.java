@@ -1,12 +1,18 @@
 package sku.board.mini.domain;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Timestamp;
 
 @Entity
 @Getter
+@NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Board {
 
     @Id
@@ -26,9 +32,19 @@ public class Board {
     @Column(length = 20)
     private String password;
 
-    @Column
+    @Column(columnDefinition = "int default 0")
     private int viewCount;
 
+    @CreatedDate
     @Column
     private Timestamp createDate;
+
+    @Builder
+    public Board(String title, String content, String writer, String password, int viewCount) {
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.password = password;
+        this.viewCount = viewCount;
+    }
 }
