@@ -1,4 +1,4 @@
-.board_wrap{
+.board_wrap, .writeView_wrap{
     margin-top:20px;
     width:60%;
     margin:auto;
@@ -6,7 +6,7 @@
     flex-direction: column;
 }
 
-.board_wrap table {
+.board_wrap table, .writeView_wrap table{
     margin-top: 10px;
     text-align: center;
 }
@@ -34,8 +34,12 @@
     width:400px;
 }
 
-.board_wrap .write_wrap{
+.board_wrap .write_wrap, .writeView_wrap .write_wrap{
     margin-top:20px;
+}
+
+.writeView_wrap table td{
+    vertical-align: middle;
 }
 
 .write_wrap .write_btn{
@@ -47,4 +51,47 @@
 .write_wrap .write_btn:hover{
     color:white;
     background: cornflowerblue;
+}
+
+.write_wrap .update_btn{
+    border: 1px solid greenyellow;
+    padding:5px;
+    cursor:pointer;
+}
+
+.write_wrap .update_btn:hover{
+    color:white;
+    background: greenyellow;
+}
+
+
+.write_wrap .delete_btn{
+    border: 1px solid red;
+    padding:5px;
+    cursor:pointer;
+}
+
+
+.write_wrap .delete_btn:hover{
+    color:white;
+    background: red;
+}
+
+.writeView_wrap table td{
+    border:1px solid #ccc;
+    height: 50px;
+}
+
+.writeView_wrap table td textarea{
+    margin-top: 10px;
+    resize: none;
+    width:95%;
+    height: 300px;
+}
+
+.writeView_wrap table td input{
+    margin-top: 5px;
+    width:80%;
+    height: 25px;
+    padding: 5px;
 }
