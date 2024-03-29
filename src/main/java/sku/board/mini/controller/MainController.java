@@ -11,4 +11,10 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/writeView")
+    public String writeView(){
+
+        return "writeView";
+    }
+
 }

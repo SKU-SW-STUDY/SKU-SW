@@ -1,0 +1,50 @@
+.board_wrap{
+    margin-top:20px;
+    width:60%;
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.board_wrap table {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.board_wrap table thead th{
+    border-top:1px solid black;
+    border-bottom:1px solid #ccc;
+    padding: 3px;
+}
+
+.board_wrap table tbody td{
+    border-bottom:1px solid #ccc;
+    padding: 3px;
+}
+
+.board_wrap table thead .shortCell{
+    width:80px;
+}
+
+.board_wrap table thead .midCell{
+    width:200px;
+}
+
+.board_wrap table thead .longCell{
+    width:400px;
+}
+
+.board_wrap .write_wrap{
+    margin-top:20px;
+}
+
+.write_wrap .write_btn{
+    border: 1px solid cornflowerblue;
+    padding:5px;
+    cursor:pointer;
+}
+
+.write_wrap .write_btn:hover{
+    color:white;
+    background: cornflowerblue;
+}

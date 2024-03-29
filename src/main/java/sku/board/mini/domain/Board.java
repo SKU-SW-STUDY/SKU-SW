@@ -3,12 +3,15 @@ package sku.board.mini.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.sql.Timestamp;
+
 @Entity
 @Getter
 public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false)
     private Long seq;
 
     @Column(length = 100)
@@ -25,4 +28,7 @@ public class Board {
 
     @Column
     private int viewCount;
+
+    @Column
+    private Timestamp createDate;
 }
