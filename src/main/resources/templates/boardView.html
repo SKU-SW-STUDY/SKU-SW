@@ -22,12 +22,12 @@
             <td>제목</td><td th:text="${board.title}"></td>
         </tr>
         <tr>
-            <td colspan="2"><textarea id="content" readonly th:text="${board.content}"></textarea></td>
+            <td colspan="2"><textarea id="content"  th:text="${board.content}"></textarea></td>
         </tr>
     </table>
     <div class="write_wrap">
         <span class="write_btn" onclick="location.href='/'">목록으로</span>
-        <span class="update_btn">수정하기</span>
+        <span class="update_btn" th:onclick="updateBtn('[[${board.seq}]]')">수정하기</span>
         <span class="delete_btn" th:onclick="deleteBtn('[[${board.seq}]]')">삭제하기</span>
     </div>
 </div>

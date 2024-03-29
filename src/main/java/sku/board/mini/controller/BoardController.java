@@ -42,8 +42,22 @@ public class BoardController {
 
     @PutMapping("/board/{seq}")
     @ResponseBody
-    public String updateBoard(@PathVariable Long seq, @RequestBody BoardDTO boardDTO) {
-        mainService.updateBoard(seq, boardDTO.getTitle(), boardDTO.getContent());
-        return "Updated board with seq: " + seq;
+    public ResponseEntity<ResponseDTO> updateBoard(@PathVariable Long seq, @RequestBody BoardDTO boardDTO) {
+        // 클라이언트에서 보낸 데이터 중 비밀번호를 추가하여 서비스로 전달
+        boolean result = mainService.updateBoard(seq, boardDTO.getPassword(), boardDTO.getContent());
+        System.out.println(boardDTO);
+        if(result){
+            return ResponseEntity.ok()
+                    .body(ResponseDTO.builder()
+                            .code(200)
+                            .message("성공")
+                            .build());
+        } else{
+            return ResponseEntity.ok()
+                    .body(ResponseDTO.builder()
+                            .code(201)
+                            .message("실패")
+                            .build());
+        }
     }
 }
