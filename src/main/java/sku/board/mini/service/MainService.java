@@ -19,8 +19,10 @@ public class MainService {
 
     public BoardDTO findById(Long seq){
         Optional<Board> b = mainRepository.findById(seq);
-        b.get().setViewCount(b.get().getViewCount()+1);
-        mainRepository.save(b.get());
+        if (b.isPresent()) {
+            b.get().setViewCount(b.get().getViewCount() + 1);
+            mainRepository.save(b.get());
+        }
         return new BoardDTO(b.get());
     }
     public List<BoardDTO> findAll(){
@@ -33,13 +35,12 @@ public class MainService {
     public boolean deleteBoard(Long seq, String password) {
         boolean result = false;
         Optional<Board> b = mainRepository.findById(seq);
-
-        System.out.println("b:"+b.get().getPassword());
-        System.out.println("b1:"+password);
-        if(b.get().getPassword().equals(password)){
-            mainRepository.deleteById(seq);
-            result = true;
-        }else result = false;
+        if (b.isPresent()) {
+            if (b.get().getPassword().equals(password)) {
+                mainRepository.deleteById(seq);
+                result = true;
+            }
+        }
 
         return result;
     }

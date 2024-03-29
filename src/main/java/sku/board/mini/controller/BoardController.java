@@ -45,7 +45,6 @@ public class BoardController {
     public ResponseEntity<ResponseDTO> updateBoard(@PathVariable Long seq, @RequestBody BoardDTO boardDTO) {
         // 클라이언트에서 보낸 데이터 중 비밀번호를 추가하여 서비스로 전달
         boolean result = mainService.updateBoard(seq, boardDTO.getPassword(), boardDTO.getContent());
-        System.out.println(boardDTO);
         if(result){
             return ResponseEntity.ok()
                     .body(ResponseDTO.builder()
