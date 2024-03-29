@@ -9,7 +9,24 @@
     <link rel="stylesheet" href="/css/common.css">
 </head>
 
-<div class="write_wrap">
+<div class="writeView_wrap">
     <h2>서경대학교 공지사항 - 글쓰기</h2>
+    <table>
+        <tr>
+            <td>작성자</td><td><input type="text" id="writer" placeholder="작성자를 입력해 주세요."/></td>
+        </tr>
+        <tr>
+            <td>비밀번호</td><td><input type="password" id="password" placeholder="비밀번호를 입력해 주세요."/></td>
+        </tr>
+        <tr>
+            <td>제목</td><td><input type="text" id="title" placeholder="제목을 입력해 주세요."/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><textarea id="content"></textarea></td>
+        </tr>
+    </table>
+    <div class="write_wrap">
+        <span class="write_btn" onclick="writeAdd()">공지사항 등록</span>
+    </div>
 </div>
 <script src="/js/index.js"></script>

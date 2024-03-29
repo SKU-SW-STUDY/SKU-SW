@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서경대 공지사항</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/common.css">
 </head>
-<body>
 
-</body>
-</html>
+<div class="writeView_wrap">
+    <h2>서경대학교 공지사항 - 게시글 조회</h2>
+    <table>
+        <tr>
+            <td>작성자</td><td>임태양</td>
+        </tr>
+        <tr>
+            <td>날짜</td><td>2023-03-04</td>
+        </tr>
+        <tr>
+            <td>비밀번호</td><td><input type="password" id="password" placeholder="비밀번호를 입력해 주세요."/></td>
+        </tr>
+        <tr>
+            <td>제목</td><td>게시글 제목</td>
+        </tr>
+        <tr>
+            <td colspan="2"><textarea id="content" readonly>게시글 테스트</textarea></td>
+        </tr>
+    </table>
+    <div class="write_wrap">
+        <span class="write_btn" onclick="location.href='/'">목록으로</span>
+        <span class="update_btn">수정하기</span>
+        <span class="delete_btn">삭제하기</span>
+    </div>
+</div>
+<script src="/js/index.js"></script>
