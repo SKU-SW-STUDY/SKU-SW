@@ -58,3 +58,31 @@ function writeAdd(){
             console.error('통신 중 오류가 발생했습니다:', error);
         });
 }
+
+function deleteBtn(seq){
+    let userInput = prompt("비밀번호를 입력하세요:");
+
+    let password= userInput.trim();
+
+    fetch(`/board/${seq}?password=${password}`, {
+        method: 'delete', // 요청 메서드를 POST로 설정합니다.
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('네트워크 응답이 실패했습니다.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if(data.code == 200){
+                alert("게시글 삭제에 성공하였습니다.");
+                location.href='/';
+            }else if(data.code == 201){
+                alert("게시글과 비밀번호가 일치하지 않습니다.");
+            }
+
+        })
+        .catch(error => {
+            console.error('통신 중 오류가 발생했습니다:', error);
+        });
+}

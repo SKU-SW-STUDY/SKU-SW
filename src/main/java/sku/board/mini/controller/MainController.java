@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import sku.board.mini.domain.Board;
 import sku.board.mini.dto.BoardDTO;
 import sku.board.mini.dto.BoardRequestDTO;
 import sku.board.mini.dto.ResponseDTO;
@@ -22,7 +23,9 @@ public class MainController {
     public final MainService mainService;
 
     @GetMapping("/index/{seq}")
-    public String showNotice(@PathVariable int seq, Model model) {
+    public String showNotice(@PathVariable Long seq, Model model) {
+        BoardDTO board = mainService.findById(seq);
+        model.addAttribute("board", board);
         return "boardView";
     }
 
@@ -42,21 +45,12 @@ public class MainController {
     @PostMapping("/writeInsert")
     @ResponseBody
     public ResponseEntity<ResponseDTO> writeInsert(@RequestBody BoardRequestDTO dto){
-        boolean b = mainService.save(dto);
-
-        if(b) {
-            return ResponseEntity.ok()
+        mainService.save(dto);
+        return ResponseEntity.ok()
                     .body(ResponseDTO.builder()
                             .code(200)
                             .message("성공")
                             .build());
-        }else {
-            return ResponseEntity.ok()
-                    .body(ResponseDTO.builder()
-                            .code(400)
-                            .message("실패")
-                            .build());
-        }
     }
 
 }

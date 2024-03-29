@@ -1,9 +1,14 @@
 package sku.board.mini.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sku.board.mini.domain.Board;
 import sku.board.mini.dto.BoardDTO;
+import sku.board.mini.dto.ResponseDTO;
 import sku.board.mini.service.MainService;
+
+import java.util.Optional;
 
 @Controller
 public class BoardController {
@@ -16,9 +21,23 @@ public class BoardController {
 
     @DeleteMapping("/board/{seq}")
     @ResponseBody
-    public String deleteBoard(@PathVariable Long seq) {
-        mainService.deleteBoard(seq);
-        return "Deleted board with seq: " + seq;
+    public ResponseEntity<ResponseDTO> deleteBoard(@PathVariable Long seq, @RequestParam String password) {
+
+        boolean result = mainService.deleteBoard(seq, password);
+
+        if(result){
+            return ResponseEntity.ok()
+                    .body(ResponseDTO.builder()
+                            .code(200)
+                            .message("성공")
+                            .build());
+        }else {
+            return ResponseEntity.ok()
+                    .body(ResponseDTO.builder()
+                            .code(201)
+                            .message("실패")
+                            .build());
+        }
     }
 
     @PutMapping("/board/{seq}")
