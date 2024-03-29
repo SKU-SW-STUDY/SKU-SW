@@ -13,7 +13,7 @@ public class MainController {
 
     @GetMapping("/writeView")
     public String writeView(){
-
+        String s = null;
         return "writeView";
     }
 
