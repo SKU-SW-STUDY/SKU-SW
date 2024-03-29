@@ -13,25 +13,22 @@
     <h2>서경대학교 공지사항 - 게시글 조회</h2>
     <table>
         <tr>
-            <td>작성자</td><td>임태양</td>
+            <td>작성자</td><td th:text="${board.writer}"></td>
         </tr>
         <tr>
-            <td>날짜</td><td>2023-03-04</td>
+            <td>날짜</td><td th:text="${board.createDate}"></td>
         </tr>
         <tr>
-            <td>비밀번호</td><td><input type="password" id="password" placeholder="비밀번호를 입력해 주세요."/></td>
+            <td>제목</td><td th:text="${board.title}"></td>
         </tr>
         <tr>
-            <td>제목</td><td>게시글 제목</td>
-        </tr>
-        <tr>
-            <td colspan="2"><textarea id="content" readonly>게시글 테스트</textarea></td>
+            <td colspan="2"><textarea id="content" readonly th:text="${board.content}"></textarea></td>
         </tr>
     </table>
     <div class="write_wrap">
         <span class="write_btn" onclick="location.href='/'">목록으로</span>
         <span class="update_btn">수정하기</span>
-        <span class="delete_btn">삭제하기</span>
+        <span class="delete_btn" th:onclick="deleteBtn('[[${board.seq}]]')">삭제하기</span>
     </div>
 </div>
 <script src="/js/index.js"></script>

@@ -1,9 +1,6 @@
 package sku.board.mini.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import sku.board.mini.domain.Board;
 
 import java.sql.Timestamp;
@@ -11,6 +8,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class BoardDTO {
 
     private Long seq;
@@ -19,6 +17,7 @@ public class BoardDTO {
     private String writer;
     private String password;
     private Timestamp createDate;
+    private int viewCount;
 
     public BoardDTO(Board board){
         this.seq = board.getSeq();
@@ -27,6 +26,17 @@ public class BoardDTO {
         this.writer = board.getWriter();
         this.password = board.getPassword();
         this.createDate = board.getCreateDate();
+        this.viewCount = board.getViewCount();
+    }
+
+    public Board toEntity(){
+        return Board.builder()
+                .title(title)
+                .content(content)
+                .writer(writer)
+                .password(password)
+                .viewCount(viewCount)
+                .build();
     }
 
 }
