@@ -44,15 +44,19 @@ public class MainService {
         return result;
     }
 
-    public void updateBoard(Long seq, String title, String content){
+    public boolean updateBoard(Long seq, String password, String content){
         Optional<Board> optionalBoard = mainRepository.findById(seq);
         if (optionalBoard.isPresent()) {
             Board board = optionalBoard.get();
-            board.setTitle(title);
-            board.setContent(content);
-            mainRepository.save(board);
+            if (board.getPassword().equals(password)) {
+                board.setContent(content);
+                mainRepository.save(board);
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            throw new RuntimeException("게시글이 존재하지 않습니다. seq: " + seq);
+            return false;
         }
     }
 }

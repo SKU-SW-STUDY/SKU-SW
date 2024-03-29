@@ -86,3 +86,49 @@ function deleteBtn(seq){
             console.error('통신 중 오류가 발생했습니다:', error);
         });
 }
+
+function updateBtn(seq) {
+    // 비밀번호 입력 받기
+    var userInput = prompt("비밀번호를 입력하세요:");
+    // 사용자가 취소 버튼을 누른 경우
+    if (userInput === null) {
+        return; // 함수 종료
+    }
+    var password = userInput.trim();
+
+    let content = document.getElementById("content").value;
+    // 수정할 내용을 가져
+
+    // 수정할 내용과 비밀번호를 JSON 형식으로 만들기
+    var data = {
+        password: password,
+        content: content
+    };
+
+    // 서버로 수정 요청 보내기
+    fetch("/board/" + seq, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('네트워크 응답이 실패했습니다.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if(data.code == 200){
+                alert("게시글 수정에 성공하였습니다.");
+                location.reload();
+            }else if(data.code == 201){
+                alert("게시글과 비밀번호가 일치하지 않습니다.");
+            }
+
+        })
+        .catch(function(error) {
+            console.error("수정 요청 실패:", error);
+        });
+}
