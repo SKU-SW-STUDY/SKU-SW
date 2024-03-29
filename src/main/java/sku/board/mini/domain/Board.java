@@ -1,12 +1,14 @@
 package sku.board.mini.domain;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 
 import java.sql.Timestamp;
 
 @Entity
 @Getter
+@Data
 public class Board {
 
     @Id
