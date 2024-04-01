@@ -14,7 +14,7 @@
 
 	4. mysql 시스템 데이터베이스 사용 : use mysql
 
-	5. 비밀번호 인증방식 변경 : update user set plugin='mysql_native_password' where user='root';
+	5. 비밀번호 인증방식 변경 : update user set plugin='mysql_native_password' where user='root'; (중간 FlUSH PRIVILEGES 적용해야 auto socket으로 변하지 않음)
 
 	6. root 비밀번호 설정: ALTER USER 'root'@'localhost' IDENTIFIED BY '비밀번호';
 
