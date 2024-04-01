@@ -17,7 +17,7 @@ SPRING-BOOT 배포
 	- java -jar 애플리케이션.jar
 
 4. 리눅스 amazon-corretto-jdk 설치 (일반 JDK와는 라이선스 차이 - amazon에서 업데이트 지원)
-	4-1) 아마존 키 저장(공개키 다운로드) : wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add-
+	4-1) 아마존 키 저장(공개키 다운로드) : wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add -
 	4-2) 시스템의 소프트웨어 소스 목록에 추가 : sudo add-apt-repository 'deb https://apt.corretto.aws stable main'
 	4-3) sudo apt-get update 
 	4-4) jdk 설치 : sudo apt-get install -y java-17-amazon-corretto-jdk
