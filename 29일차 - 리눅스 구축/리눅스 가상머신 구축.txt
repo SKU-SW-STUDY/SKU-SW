@@ -10,7 +10,9 @@
 
 	2. mysql 설치 : sudo apt install mysql-server
 
-	3. mysql 접속 : sudo mysql -u root (root 접속)
+	3. mysql 접속 : sudo mysql -u root (root 접속) 
+
+	* mysql 접속 (비번) : sudo mysql -u root -p 입력 후 비밀번호 입력 
 
 	4. mysql 시스템 데이터베이스 사용 : use mysql
 
