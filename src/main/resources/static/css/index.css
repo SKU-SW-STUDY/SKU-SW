@@ -36,6 +36,8 @@
 
 .board_wrap .write_wrap, .writeView_wrap .write_wrap{
     margin-top:20px;
+    margin-bottom:20px;
+
 }
 
 .writeView_wrap table td{
@@ -46,6 +48,7 @@
     border: 1px solid cornflowerblue;
     padding:5px;
     cursor:pointer;
+    margin-bottom: 20px;
 }
 
 .write_wrap .write_btn:hover{
@@ -82,16 +85,32 @@
     height: 50px;
 }
 
-.writeView_wrap table td textarea{
-    margin-top: 10px;
-    resize: none;
-    width:95%;
-    height: 300px;
-}
+/*.writeView_wrap table td textarea{*/
+/*    margin-top: 10px;*/
+/*    resize: none;*/
+/*    width:95%;*/
+/*    height: 300px;*/
+/*}*/
 
 .writeView_wrap table td input{
     margin-top: 5px;
     width:80%;
     height: 25px;
     padding: 5px;
+}
+
+.ck-editor__editable { height: 400px; }
+.ck-content { font-size: 15px; }
+
+.writeView_wrap .image_wrap{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.writeView_wrap .image_wrap img{
+    width:250px;
+    height:250px;
+    margin-right:10px;
+    border: 1px solid black;
+    cursor:pointer;
 }

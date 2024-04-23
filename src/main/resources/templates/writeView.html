@@ -25,8 +25,19 @@
             <td colspan="2"><textarea id="content"></textarea></td>
         </tr>
     </table>
+    <div class="image_wrap">
+        <img src="image/camera.png" onclick="attachFile(1)"/>
+        <img src="image/camera.png" onclick="attachFile(2)"/>
+        <img src="image/camera.png" onclick="attachFile(3)"/>
+
+        <input type="file" id="fileInput_1" style="display: none;">
+        <input type="file" id="fileInput_2" style="display: none;">
+        <input type="file" id="fileInput_3" style="display: none;">
+    </div>
     <div class="write_wrap">
         <span class="write_btn" onclick="writeAdd()">공지사항 등록</span>
     </div>
 </div>
+<script src="/js/ckEditor.js"></script>
+<script src="/js/ckEditorKo.js"></script>
 <script src="/js/index.js"></script>

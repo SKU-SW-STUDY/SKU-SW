@@ -1,6 +1,7 @@
 package sku.board.mini.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import sku.board.mini.domain.Board;
 import sku.board.mini.dto.BoardDTO;
@@ -26,7 +27,8 @@ public class MainService {
         return new BoardDTO(b.get());
     }
     public List<BoardDTO> findAll(){
-        return mainRepository.findAll().stream().map(BoardDTO::new).toList();
+        Sort sortByCreateDate = Sort.by("createDate").descending();
+        return mainRepository.findAll(sortByCreateDate).stream().map(BoardDTO::new).toList();
     }
 
     public void save(BoardRequestDTO dto) {

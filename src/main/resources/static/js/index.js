@@ -1,26 +1,42 @@
-function writeView(){
-    location.href="/writeView";
+let editor;
+
+    ClassicEditor.create( document.querySelector('#content'), {
+    language: 'ko'
+    /*toolbar: { // toolbar 커스텀 가능
+        items: [
+            'bold', // bold 버튼 누를 시 strong 태그 삽입
+            'undo',
+            'redo'
+        ]
+    },*/
+}).then( newEditor => {
+    editor = newEditor;
+} );
+
+function writeView() {
+    location.href = "/writeView";
 }
 
-function writeAdd(){
+function writeAdd() {
     let writer = document.getElementById("writer").value;
     let password = document.getElementById("password").value;
     let title = document.getElementById("title").value;
-    let content = document.getElementById("content").value;
+    //let content = document.getElementById("content").value;
+    let content = editor.getData();
 
-    if(writer.trim() == "") {
+    if (writer.trim() == "") {
         alert("작성자를 입력해 주세요");
         return false;
     }
-    if(password.trim() == "") {
+    if (password.trim() == "") {
         alert("비밀번호를 입력해 주세요");
         return false;
     }
-    if(title.trim() == "") {
+    if (title.trim() == "") {
         alert("제목을 입력해 주세요");
         return false;
     }
-    if(content.trim() == "") {
+    if (content.trim() == "") {
         alert("게시글을 입력해 주세요");
         return false;
     }
@@ -29,8 +45,8 @@ function writeAdd(){
     const postData = {
         writer: writer,
         password: password,
-        title : title,
-        content : content
+        title: title,
+        content: content
     };
 
     fetch('/writeInsert', {
@@ -48,9 +64,9 @@ function writeAdd(){
         })
         .then(data => {
 
-            if(data.code == 200){
+            if (data.code == 200) {
                 alert("게시글 작성에 성공하였습니다.");
-                location.href='/';
+                location.href = '/';
             }
 
         })
@@ -59,10 +75,10 @@ function writeAdd(){
         });
 }
 
-function deleteBtn(seq){
+function deleteBtn(seq) {
     let userInput = prompt("비밀번호를 입력하세요:");
 
-    let password= userInput.trim();
+    let password = userInput.trim();
 
     fetch(`/board/${seq}?password=${password}`, {
         method: 'delete', // 요청 메서드를 POST로 설정합니다.
@@ -74,10 +90,10 @@ function deleteBtn(seq){
             return response.json();
         })
         .then(data => {
-            if(data.code == 200){
+            if (data.code == 200) {
                 alert("게시글 삭제에 성공하였습니다.");
-                location.href='/';
-            }else if(data.code == 201){
+                location.href = '/';
+            } else if (data.code == 201) {
                 alert("게시글과 비밀번호가 일치하지 않습니다.");
             }
 
@@ -120,15 +136,19 @@ function updateBtn(seq) {
             return response.json();
         })
         .then(data => {
-            if(data.code == 200){
+            if (data.code == 200) {
                 alert("게시글 수정에 성공하였습니다.");
                 location.reload();
-            }else if(data.code == 201){
+            } else if (data.code == 201) {
                 alert("게시글과 비밀번호가 일치하지 않습니다.");
             }
 
         })
-        .catch(function(error) {
+        .catch(function (error) {
             console.error("수정 요청 실패:", error);
         });
+}
+
+function attachFile(i) {
+    document.getElementById('fileInput_' + i).click();
 }
