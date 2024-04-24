@@ -103,18 +103,18 @@ function deleteBtn(seq) {
 
 function updateBtn(seq) {
     // 비밀번호 입력 받기
-    var userInput = prompt("비밀번호를 입력하세요:");
+    let userInput = prompt("비밀번호를 입력하세요:");
     // 사용자가 취소 버튼을 누른 경우
     if (userInput === null) {
         return; // 함수 종료
     }
-    var password = userInput.trim();
+    let password = userInput.trim();
 
     let content = editor.getData();
     // 수정할 내용을 가져
 
     // 수정할 내용과 비밀번호를 JSON 형식으로 만들기
-    var data = {
+    let data = {
         password: password,
         content: content
     };
