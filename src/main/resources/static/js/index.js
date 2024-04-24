@@ -150,3 +150,21 @@ function updateBtn(seq) {
 function attachFile(i) {
     document.getElementById('fileInput_' + i).click();
 }
+
+let file = new Array(3);    // 파일 3개를 서버로 보내기 위함
+
+function fileChange(e, i){
+    file[i-1] = e.files[0];
+    console.log(file[i-1]);
+    const reader = new FileReader();
+
+    // 파일을 읽은 후 실행되는 함수 정의
+    reader.onload = function(e) {
+        // 이미지를 표시하기 위해 새로운 img 요소 생성
+        const img = document.getElementById('img_'+i);
+        // 이미지의 소스에 파일의 데이터 URL을 설정
+        img.src = e.target.result;
+    }
+
+    reader.readAsDataURL(file[i-1]);
+}
