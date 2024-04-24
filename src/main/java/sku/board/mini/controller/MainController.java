@@ -5,15 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import sku.board.mini.domain.Board;
 import sku.board.mini.dto.BoardDTO;
 import sku.board.mini.dto.BoardRequestDTO;
 import sku.board.mini.dto.ResponseDTO;
 import sku.board.mini.service.MainService;
-
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -47,10 +42,10 @@ public class MainController {
     public ResponseEntity<ResponseDTO> writeInsert(@RequestBody BoardRequestDTO dto){
         mainService.save(dto);
         return ResponseEntity.ok()
-                    .body(ResponseDTO.builder()
-                            .code(200)
-                            .message("성공")
-                            .build());
+                .body(ResponseDTO.builder()
+                        .code(200)
+                        .message("성공")
+                        .build());
     }
 
 }

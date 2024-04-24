@@ -1,5 +1,4 @@
 let editor;
-
     ClassicEditor.create( document.querySelector('#content'), {
     language: 'ko'
     /*toolbar: { // toolbar 커스텀 가능
@@ -21,7 +20,6 @@ function writeAdd() {
     let writer = document.getElementById("writer").value;
     let password = document.getElementById("password").value;
     let title = document.getElementById("title").value;
-    //let content = document.getElementById("content").value;
     let content = editor.getData();
 
     if (writer.trim() == "") {
@@ -112,7 +110,7 @@ function updateBtn(seq) {
     }
     var password = userInput.trim();
 
-    let content = document.getElementById("content").value;
+    let content = editor.getData();
     // 수정할 내용을 가져
 
     // 수정할 내용과 비밀번호를 JSON 형식으로 만들기
