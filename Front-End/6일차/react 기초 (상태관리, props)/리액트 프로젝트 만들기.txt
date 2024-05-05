@@ -1,0 +1,9 @@
+Node.js 설치가 완료되었다면
+
+1. npm install create-react-app (create-react-app 설치)
+
+2. npx create-react-app [폴더이름]
+
+3. npm start or npm run start (리액트 서버 시작)
+
+3단계로 프로젝트 시작하기 

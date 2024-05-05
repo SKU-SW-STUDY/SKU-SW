@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                width: 100%;
+            }
+
+            table{
+                margin:auto;
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+            
+            td{
+                border:1px solid black;
+                padding:5px;
+            }
+
+            td:first-child{
+                color:red;
+            }
+
+            td:last-child{
+                color:blue;
+            }
+        </style>
+    </head>
+<body>
+    <div id="position"></div>
+    <table>
+        <tr>
+            <td>일</td>
+            <td>월</td>
+            <td>화</td>
+            <td>수</td>
+            <td>목</td>
+            <td>금</td>
+            <td>토</td>        
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+        </tr>
+    </table>
+    <input type="button" value="call" onclick="test()"/>
+    <input type="button" value="current time" onclick="now()"/>
+    <input type="button" value="startTimer" onclick="startTimer()"/>
+    <input type="button" value="stopTimer" onclick="stopTimer()"/>
+    
+</body>
+</html>
+
+<script>
+    let start = null;
+
+    function test(){
+        console.log("welcome");
+        let ele = document.getElementById('position');
+        ele.innerHTML = "<h1>Welcome Javascript!!</h1>";
+    }
+
+    function now(){
+        let now = new Date();
+        let ele = document.getElementById('position');
+
+        let hour = now.getHours();
+        let min = now.getMinutes();
+        let sec = now.getSeconds();
+
+        let text = "";
+        //text = hour + "시" + min + "분" + sec + "초";
+
+        text = `${hour}시${min}분${sec}초`
+
+        ele.innerHTML = "<h1>"+text+"</h1>";
+    }
+
+    function startTimer(){
+
+        /* 
+            1. 반복되는 주기를 표현 : setInterval 함수 
+            2. 일정 시간 이후에 실행 : setTimeout 함수 
+        */
+
+        start = setInterval(() =>{  
+            now();
+         }, 1000);
+
+    }
+
+    function stopTimer(){
+        if(start != null){
+            clearInterval(start);
+        }
+    }
+</script>

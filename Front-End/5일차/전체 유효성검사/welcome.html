@@ -1,0 +1,124 @@
+<!--Alt + L, Alt + O 라이브 서버 켜기 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="welcome.css">
+    </head>
+<body>
+
+    <form action="/">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="4">회원가입 양식</th>
+                </tr>
+                <tr>
+                    <th class="tdShortCell">구분</th>
+                    <th class="tdLongCell">데이터입력</th>
+                    <th class="tdMidCell">유효성검사</th>
+                    <th class="tdMidCell">비고</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>아이디</td>
+                    <td><input class ="inputClass" type="text" id="id"/><input type="button" value="아이디 확인" id="idBtn" onclick="idChk()"/></td>
+                    <td>8자리, 첫글자 영문소문자</td>
+                    <td><span id="idTxt" style="color:red; font-size:17px;"></span></td>
+                </tr> 
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input class ="inputClass" type="password" id="pass"/></td>
+                    <td rowspan="2">비밀번호 일치</td>
+                    <td rowspan="2"><span id="pwTxt" style="color:red; font-size:17px;"></span></td>
+                </tr>
+                <tr>
+                    <td>비번확인</td>
+                    <td><input class ="inputClass" type="password" id="passChk" onblur="pwChk()" /></td>
+                </tr>
+                <tr> 
+                    <td>이름</td>
+                    <td><input class ="inputClass" type="text" id="name" required/></td>
+                    <td>필수입력</td>
+                    <td></td>
+                </tr> 
+                <tr> 
+                    <td>우편번호</td>
+                    <td><input class ="inputClass" type="text" required disabled/><input type="button" value="번호찾기"/></td>
+                    <td rowspan="3">필수입력</td>
+                    <td></td>
+                </tr>
+                <tr> 
+                    <td>주소1</td>
+                    <td><input class ="inputLongClass" type="text" disabled/></td>
+                    <td></td>
+                </tr> 
+                <tr> 
+                    <td>주소2</td>
+                    <td><input class ="inputLongClass" type="text" disabled/></td>
+                    <td></td>
+                </tr>
+                <tr> 
+                    <td>생년월일</td>
+                    <td>
+                        <div id="birth">
+                            <input type="text" class="inputShortClass" placeholder="년도" maxlength="4" id="year"/> - 
+                            <select id="month" onchange="selectMonth()">
+                                <option value="NONE">월</option>
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select> - 
+                            <select id="days">
+                                <option value="NONE">일</option>
+                            </select>
+                        </div>
+                        <!--<div>
+                            <input type="text" class="inputShortClass" placeholder="년도" maxlength="4"/> - <input type="text" class="inputShortClass" placeholder="월" maxlength="2"/> - <input class="inputShortClass" type="text" placeholder="일" maxlength="2"/>
+                        </div>-->
+                    </td>
+                    <td>년도는 1900~2050, 월은 1~12, 일은 1~31</td>
+                    <td>2개중 하나 선택</td>
+                </tr>  
+                <tr>
+                    <td>성별</td>
+                    <td><input type="radio" name="gender"/><label>남</label><input type="radio" name="gender" checked /><label>여</label></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>관심분야</td>
+                    <td><input type="checkbox" id="ct1" name="category"/><label for="ct1">문학</label><input type="checkbox" id="ct2" name="category"/><label for="ct2">어학</label><input type="checkbox" id="ct3" name="category"/><label for="ct3">정보IT</label><br>
+                        <input type="checkbox" id="ct4" name="category"/><label for="ct4">과학</label><input type="checkbox" id="ct5" name="category"/><label for="ct5">수학</label><input type="checkbox" id="ct6" name="category"/><label for="ct6">예술</label></td>
+                    <td>2~3개 사이 선택</td>
+                    <td><input type="button" value="관심분야 확인" id="cateBtn" onclick="categoryBtn()"></td>
+                </tr>
+                <tr>
+                    <td>자기소개</td>
+                    <td><textarea></textarea></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th colspan="4">
+                        <input type="button" value="가입" id="submit" onclick="submitCheck()">
+                        <input type="button" value="초기화" id="reset">
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="valid.js"></script>

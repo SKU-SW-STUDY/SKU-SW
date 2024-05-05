@@ -1,0 +1,23 @@
+<html>  
+    <body>
+        <img src="/image/cat1.png" alt="버튼클릭" style="width:100px; height:100px; display:block" id="image"/>
+        <input type="button" value="btn1" onclick="btn1()"/>
+        <input type="button" value="btn2" onclick="btn2()"/>
+        <input type="button" value="btn2" onclick="btn3()"/>
+    </body>
+
+    <script>
+        let img = document.getElementById("image");
+        
+        function btn1(){
+           img.src = "/image/cat1.png"; //  img.setAttribute('src', '/image/cat1.png') 가능 
+        }
+        function btn2(){
+            img.src = "/image/dog1.jpg";
+        }
+
+        function btn3(){
+            img.src = "/image/sasm.png";
+        }
+    </script>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Service</title>
+    <style>
+        table, td {
+            border : 1px solid black;
+            border-collapse: collapse;
+            position: relative;
+            margin: 10px 150px;
+        }
+
+        td {
+            width : 100px;
+            height: 40px;
+            text-align: center;
+        }
+
+        th{
+            width : 300px;
+            height: 40px;
+            text-align: center;
+        }
+
+        span {
+            margin-left: 150px;
+        }
+        div {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#book_status').on('click',()=>{
+                //alert('in');
+                $.ajax({
+                    url : './library.json',
+                    success : function(data){  // JSON 객체 JSON.stringify (JSON 형태의 문자열을 리턴함수) <-> JSON.parse (문자열을 JSON 객체로 만듬)
+                        /* 1. 사용자 상태 */
+                        let user_status = $("#user_status");
+                        let user_status_data = data.data.userInfo.user;
+                        createUserTable(user_status, user_status_data);
+
+                        /* 2. 전체도서목록 */
+                        let total = $("#total");
+                        let total_data = data.data.bookInfo.list;
+
+                        createTable(total, total_data);
+
+                        /* 3. 전체반납목록 */
+                        let returned = $("#returned");
+                        let returned_data = data.data.bookInfo.returned;
+
+                        createTable(returned, returned_data);
+
+                        /* 4. 미반납목록 */
+                        let not_returned = $("#not_returned");
+                        let not_returned_data = data.data.bookInfo.notReturned;
+
+                        createTable(not_returned, not_returned_data);
+
+                        // 5. 반납예정목록 */
+                        let expecting_return = $("#expecting_return");
+                        let expecting_return_data = data.data.bookInfo.expectingReturn;
+
+                        createTable(expecting_return, expecting_return_data);
+                    }
+                });
+            });
+
+
+            /* # 대출, 반납 미구현 */
+            $('#btn_add').on('click',function(){
+                let bookId = $('#addbook').val();
+                const book = {
+                    bookSeq: "100",
+                    bookIsbn: "PM0000137904",
+                    bookTitle: "유창한 영어회화를 꼭 원하는 분. 10 Fluent English",
+                    bookAuthor: "강성구 지음",
+                    userId: "user1",
+                    borrowStart: "2023-08-05",
+                    borrowEnd: "2023-08-18",
+                    returnDate: "-"
+                }
+            });
+        });
+
+        function createTable(id, obj){
+            for(let item of obj){
+                let header = "<tr><td>도서번호</td><td class='book_title'>도서명</td><td>저자</td><td>대출일자</td><td>반납기한</td><td>반납일자</td></tr>";
+                let txt = `<tr><td>${item.bookIsbn}</td>`;
+                txt += `<td>${item.bookTitle}</td>`;
+                txt +=`<td>${item.bookAuthor}</td>`;
+                txt +=`<td>${item.borrowStart}</td>`;
+                txt +=`<td>${item.borrowEnd}</td>`;
+                txt +=`<td>${item.returnDate}</td></tr>`;
+                id.html(header+txt);
+            }
+        }
+
+
+        function createUserTable(id, obj){
+            for(let item of obj){
+                let header = "<tr><td>대출도서</td><td>반납도서</td><td>미반납도서</td><td>반납예정도서</td><td>대출가능권수</td><td>이용상태</td><td>대출정지기간</td></tr>";
+                let txt = `<tr><td>${item.totalUsingBook}</td>`;
+                txt += `<td>${item.returnedBook}</td>`;
+                txt +=`<td>${item.notReturnedBook}</td>`;
+                txt +=`<td>${item.expectingReturnBook}</td>`;
+                txt +=`<td>${item.expectingReturnBook}</td>`;
+                txt +=`<td>${item.availableBook}</td>`;
+                txt +=`<td>${item.stopDate}</td></tr>`;
+                id.html(header+txt);
+            }
+        }
+    </script>
+   <body>
+    <span><button id="book_status">user1 도서현황보기</button></span>
+    <div id="container">
+    <div>
+        <table id="user_status">
+        <tr><td>대출도서</td><td>반납도서</td><td>미반납도서</td><td>반납예정도서</td><td>대출가능권수</td><td>이용상태</td><td>대출정지기간</td></tr>
+    </table>
+    </div>
+    <br>
+    <div>
+        <span>현재대출목록</span>
+        <input type="text" name="" id="addbook" > <button id="btn_add">대출</button>
+        <table id="curr_borrow">
+            <tr><td>도서번호</td><td class="book_title">도서명</td><td>저자</td><td>대출일자</td><td>반납기한</td><td>반납일자</td></tr>
+        </table>
+    </div>
+    <br>
+    <div>
+        <span>현재반납목록</span>
+        <input type="text" name="" id="minusbook"> <button id="btn_minus">반납</button>
+        <table id="curr_returned">
+            <tr><td>도서번호</td><td class="book_title">도서명</td><td>저자</td><td>대출일자</td><td>반납기한</td><td>반납일자</td></tr>
+        </table>
+    </div>
+    <div>
+        <span>전체도서목록</span>
+        <table id="total">
+            <tr><td>도서번호</td><th>도서명</th><td>저자</td><td>대출일자</td><td>반납기한</td><td>반납일자</td></tr>
+            
+        </table>
+    </div>
+
+    <div>
+        <span>전체반납목록</span>
+        <table id="returned">
+            <tr><td>도서번호</td><th>도서명</th><td>저자</td><td>대출일자</td><td>반납기한</td><td>반납일자</td></tr>
+                   </table>
+    </div>
+    <div>
+        <span>미반납목록</span>
+        <table id="not_returned">
+            <tr><td>도서번호</td><th>도서명</th><td>저자</td><td>대출일자</td><td>반납기한</td><td>반납일자</td></tr>
+                    </table>
+    </div>
+    <div>
+        <span>반납예정목록</span>
+        <table id="expecting_return">
+            <tr><td>도서번호</td><th>도서명</th><td>저자</td><td>대출일자</td><td>반납기한</td><td>반납일자</td></tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
