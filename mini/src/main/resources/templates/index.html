@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서경대 공지사항</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/common.css">
+</head>
+
+<div class="board_wrap">
+    <h2>서경대학교 공지사항</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="shortCell">번호</th>
+                <th class="longCell">제목</th>
+                <th class="midCell">글쓴이</th>
+                <th class="midCell">날짜</th>
+                <th class="shortCell">조회수</th>
+            </tr>
+        </thead>
+
+        <tbody th:if="${!#lists.isEmpty(list)}">
+            <tr th:each="item : ${list}">
+                <td th:text="${item.seq}"></td>
+                <td><a th:href="@{'/index/' + ${item.seq}}" th:text="${item.title}"></a></td>
+                <td th:text="${item.writer}"></td>
+                <td th:text="${#dates.format(item.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${item.viewCount}"></td>
+            </tr>
+        </tbody>
+
+        <tbody th:if="${#lists.isEmpty(list)}">
+            <tr>
+                <td colspan="5">게시글이 없습니다.</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="write_wrap">
+        <span class="write_btn" onclick="location.href='/writeView'">글쓰기</span>
+    </div>
+</div>
+<script src="/js/index.js"></script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서경대 공지사항</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/common.css">
+</head>
+
+<div class="writeView_wrap">
+    <h2>서경대학교 공지사항 - 게시글 조회</h2>
+    <table>
+        <tr>
+            <td>작성자</td><td th:text="${board.writer}"></td>
+        </tr>
+        <tr>
+            <td>날짜</td><td th:text="${#dates.format(board.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        </tr>
+        <tr>
+            <td>제목</td><td th:text="${board.title}"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><textarea id="content"  th:text="${board.content}"></textarea></td>
+        </tr>
+    </table>
+    <div class="image_wrap">
+        <img id="img_1" src="/image/camera.png" onclick="attachFile(1)"/>
+        <img id="img_2" src="/image/camera.png" onclick="attachFile(2)"/>
+        <img id="img_3" src="/image/camera.png" onclick="attachFile(3)"/>
+
+        <input type="file" id="fileInput_1" accept="image/*" style="display: none;" onchange="fileChange(this, 1)">
+        <input type="file" id="fileInput_2" accept="image/*" style="display: none;" onchange="fileChange(this, 2)">
+        <input type="file" id="fileInput_3" accept="image/*" style="display: none;" onchange="fileChange(this, 3)">
+    </div>
+    <div class="write_wrap">
+        <span class="write_btn" onclick="location.href='/'">목록으로</span>
+        <span class="update_btn" th:onclick="updateBtn('[[${board.seq}]]')">수정하기</span>
+        <span class="delete_btn" th:onclick="deleteBtn('[[${board.seq}]]')">삭제하기</span>
+    </div>
+</div>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+<script src="/js/index.js"></script>

@@ -1,0 +1,116 @@
+.board_wrap, .writeView_wrap{
+    margin-top:20px;
+    width:60%;
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.board_wrap table, .writeView_wrap table{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.board_wrap table thead th{
+    border-top:1px solid black;
+    border-bottom:1px solid #ccc;
+    padding: 3px;
+}
+
+.board_wrap table tbody td{
+    border-bottom:1px solid #ccc;
+    padding: 3px;
+}
+
+.board_wrap table thead .shortCell{
+    width:80px;
+}
+
+.board_wrap table thead .midCell{
+    width:200px;
+}
+
+.board_wrap table thead .longCell{
+    width:400px;
+}
+
+.board_wrap .write_wrap, .writeView_wrap .write_wrap{
+    margin-top:20px;
+    margin-bottom:20px;
+
+}
+
+.writeView_wrap table td{
+    vertical-align: middle;
+}
+
+.write_wrap .write_btn{
+    border: 1px solid cornflowerblue;
+    padding:5px;
+    cursor:pointer;
+    margin-bottom: 20px;
+}
+
+.write_wrap .write_btn:hover{
+    color:white;
+    background: cornflowerblue;
+}
+
+.write_wrap .update_btn{
+    border: 1px solid greenyellow;
+    padding:5px;
+    cursor:pointer;
+}
+
+.write_wrap .update_btn:hover{
+    color:white;
+    background: greenyellow;
+}
+
+
+.write_wrap .delete_btn{
+    border: 1px solid red;
+    padding:5px;
+    cursor:pointer;
+}
+
+
+.write_wrap .delete_btn:hover{
+    color:white;
+    background: red;
+}
+
+.writeView_wrap table td{
+    border:1px solid #ccc;
+    height: 50px;
+}
+
+/*.writeView_wrap table td textarea{*/
+/*    margin-top: 10px;*/
+/*    resize: none;*/
+/*    width:95%;*/
+/*    height: 300px;*/
+/*}*/
+
+.writeView_wrap table td input{
+    margin-top: 5px;
+    width:80%;
+    height: 25px;
+    padding: 5px;
+}
+
+.ck-editor__editable { height: 400px; }
+.ck-content { font-size: 15px; }
+
+.writeView_wrap .image_wrap{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.writeView_wrap .image_wrap img{
+    width:250px;
+    height:250px;
+    margin-right:10px;
+    border: 1px solid black;
+    cursor:pointer;
+}
