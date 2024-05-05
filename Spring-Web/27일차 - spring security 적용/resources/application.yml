@@ -1,0 +1,15 @@
+spring:
+  jpa:
+    show-sql: true              # JPA 로그 쿼리 출력 옵션
+    properties:
+      hibernate:
+        format_sql: true        # 쿼리 로그 포맷팅
+    defer-datasource-initialization: true     # JPA 테이블 생성 후 쿼리 실행 옵션
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  h2:
+    console:
+      enabled: true  # h2 콘솔 활성화 옵션
+

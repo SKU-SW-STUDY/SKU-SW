@@ -1,0 +1,49 @@
+SPRING-BOOT 배포 
+
+1. gradle-wrapper.jar : wrapper 파일이며 실행 스크립트의 동작을 도와준다.
+	- 파일위치 : gradle/wrapper/
+	- 설정파일 : gradle-wrapper.properties
+
+2. gradlew : 유닉스용 wrapper 실행 스크립트
+	- 컴파일, 빌드 등을 하는 경우 사용
+	* 빌드 : 소스코드를 컴파일, 테스트, 정적 분석 등을 실행하여 실행 가능한 애플리케이션으로 만들어주는 과정
+	- gradlew clean build => build/libs 폴더에 애플리케이션 실행 jar 파일 생성역할 
+
+	* clean : 이전 빌드에서 생성된 모든 빌드 아티팩트를 정리 
+	* build : 프로젝트 빌드
+
+3. 배포 (jar 실행)	( 빌드 시 build/libs 폴더에 생성 )
+	* java 설치 필요 (Window : 환경변수 : JAVA_HOME 설정 / PATH : %JAVA_HOME%\bin 설정)
+	- java -jar 애플리케이션.jar
+
+4. AWS 인스턴스 생성 E2C
+	4-1) 프리티어 / Ubuntu / EC2 인스턴스 생성
+	4-2) 보안규칙 생성 : 접속을 허용할 인/아웃 바운드 설정 
+	4-3) 연결 접속 후 서버 시간대 서울로 변경 : sudo timedatectl set-timezone Asia/Seoul (서비스의 타임존 기본값이 서버 시간대)
+
+5. AWS amazon-corretto-jdk 설치 (일반 JDK와는 라이선스 차이 - amazon에서 업데이트 지원)
+	5-1) 아마존 키 저장(공개키 다운로드) : wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add-
+	5-2) 시스템의 소프트웨어 소스 목록에 추가 : sudo add-apt-repository 'deb https://apt.corretto.aws stable main'
+	5-3) sudo apt-get update 
+	5-4) jdk 설치 : sudo apt-get install -y java-17-amazon-corretto-jdk
+	5-5) 파일질라와 같은 프로그램으로 (sftp 파일전송) jar 파일 전송 후 실행 
+
+6. AWS MYSQL 설치 후 외부 연결을 위한 네트워크 설정 (모든 네트워크 허용)
+	6-1) /etc/mysql/mysql.conf.d/ mysqld.conf 파일 bind-address 부분 수정 
+	-> bind-address = 0.0.0.0 (모든 네트워크 허용)
+	-> #mysql-bind-address  주석 
+
+	6-2) 설정 후 MYSQL 서비스 재시작 : sudo systemctl restart mysql 
+	6-3) MYSQL 접속 : sudo mysql -u root -p / 비밀번호 입력 
+	6-4) 외부 접속 사용자 생성 :  create user '사용자 이름'@'허용할 주소' identified by '비밀번호';
+	6-5) 외부 접속 사용자 권한 설정 : grant all privileges on *.* to '사용자 이름'@'허용할 주소';
+	* 모든 접속 허용 'root'@'%' 
+
+	* 접속안될 시 :  AWS 3306포트 보안규칙 확인 
+
+	* 방화벽 옵션 정리  (리눅스에서 기본으로 설치가 되어있지 않음)
+	6-6) 방화벽 설치 : sudo apt install firewalld	
+	6-7) 방화벽 확인 : firewall-cmd --zone=public --list-all
+	6-8) 방화벽 포트 추가 : firewall-cmd --permanent --zone=public --add-port=3306/tcp
+	6-9) 서비스 재구동 : firewall-cmd --reload
+
